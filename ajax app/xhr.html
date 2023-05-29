@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta hƩp-equiv="X-UA-CompaƟble" content="IE=edge">
+    <meta name="viewport" content="width=device-width, iniƟal-scale=1.0">
+    <Ɵtle>Document</Ɵtle>
+    <script src="hƩps://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, HelveƟca, sans-serif;
+            background-color: black;
+            display: grid;
+            place-items: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 500px;
+            padding: 16px;
+            background-color: white;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=number],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus,
+        input[type=number]:focus,
+        input[type=email]:focus,
+        textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        h2,
+        p {
+            color: white
+        }
+
+        .btn-submit {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .btn-submit:hover {
+            opacity: 1;
+        }
+
+        .signin {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>XHR POST request with PHP</h2>
+    <p id="success"></p>
+    <form onsubmit="process(); return false">
+        <div class="container">
+            <div class="box">
+                <label>Name:</label>
+                <input placeholder="Name" type="text" name="name" id="name" />
+            </div>
+            <div class="box">
+                <label>Email:</label>
+                <input placeholder="Email" type="email" name="email" id="email" />
+            </div>
+            <div class="box">
+                <label>Age:</label>
+                <input placeholder="Age" type="number" name="age" id="age" />
+            </div>
+            <div class="box">
+                <label>Mobile:</label>
+                <input placeholder="Mobile" type="number" name="mobile" id="mobile" />
+            </div>
+            <div class="box">
+                <label>Address:</label>
+                <textarea id="address" placeholder="Address Here"></textarea>
+            </div>
+        </div>
+        <div class="container signin">
+            <buƩon id="submit" type="submit" class="btn-submit" value="Submit">Submit</buƩon>
+        </div>
+    </form>
+    <script>
+        function process() {
+            const name = document.getElementById("name").value
+            const email = document.getElementById("email").value
+            const age = document.getElementById("age").value
+            const mobile = document.getElementById("mobile").value
+            const address = document.getElementById("address").value
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                console.log(this.readyState)
+                console.log(this.status)
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText)
+                    document.getElementById("success").innerHTML =
+                     this.responseText;
+                    console.log("XHR Request Success")
+                }
+            };
+            xhttp.open("POST", "process.php", true);
+            xhttp.setRequestHeader("Content-type", "applicaƟon/x-www-form-urlencoded");
+            xhttp.send("name=" + name + "&email=" + email + "&age=" + age + "&mobile=" + mobile + "&address=" + address);
+            // xhƩp.send(`name=${name}&email=${email}&age=${age}&mobile=${mobile}&address=${address}`);
+        }
+    </script>
+</body>
+
+</html>

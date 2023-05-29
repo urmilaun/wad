@@ -1,0 +1,26 @@
+<h1>{{title}}</h1>
+
+<label>Name: </label>
+<input type="text" #name><br><br>
+<label>Address: </label>
+<input type="text" #address><br><br>
+<label>Phone no: </label>
+<input type="text" #number><br><br>
+<label>Email: </label>
+<input type="email" #email><br><br>
+<label>Password: </label>
+<input type="password" #pass><br><br>
+<label>Confirm password: </label>
+<input type="password" #cpass><br><br>
+
+<button (click)="getValue(name.value , address.value , number.value , email.value)">Register</button>
+
+
+
+
+<h1> User Information </h1>
+
+<p>Name: {{displayName}}</p>
+<p>Address: {{displayAddress}}</p>
+<p>Phone number: {{displayNumber}}</p>
+<p>Email-id: {{displayEmail}}</p>
